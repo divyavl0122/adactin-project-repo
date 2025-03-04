@@ -1,0 +1,102 @@
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class AutoPrac {
+public static WebDriver driver;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+WebDriverManager.chromedriver().setup();
+ driver = new ChromeDriver();
+driver.get("https://adactinhotelapp.com/HotelAppBuild2/index.php");
+WebElement userNamefield =  driver.findElement(By.xpath("//input[@id='username']"));
+userNamefield.sendKeys("Hotelsaravana");
+WebElement passwordField = driver.findElement(By.xpath("//input[@id='password']"));
+passwordField.sendKeys("starhotel");
+WebElement loginButton = driver.findElement(By.id("login"));
+loginButton.click();
+WebElement selectLocation = driver.findElement(By.xpath("//select[@id='location']"));
+Select select = new Select(selectLocation);
+select.selectByValue("London");
+
+WebElement selectHotel = driver.findElement(By.xpath("//select[@id='hotels']"));
+Select select1 = new Select(selectHotel);
+select1.selectByVisibleText("Hotel Sunshine");
+
+WebElement selectRoomType = driver.findElement(By.xpath("//select[@id='room_type']"));
+Select select2 = new Select(selectRoomType);
+select2.selectByVisibleText("Deluxe");
+
+WebElement checkInDate = driver.findElement(By.xpath("//input[@id='datepick_in']"));
+checkInDate.sendKeys("25/12/2024");
+
+WebElement checkOutDate = driver.findElement(By.xpath("//input[@id='datepick_out']"));
+checkOutDate.sendKeys("1/1/2025");
+
+WebElement noOFChildInRoom= driver.findElement(By.xpath("//select[@id='child_room']"));
+Select select3 = new Select(noOFChildInRoom);
+select3.selectByIndex(2);
+WebElement clickSearchbutton = driver.findElement(By.id("Submit"));
+clickSearchbutton.click();
+	
+WebElement clickRadioBtnForBooking = driver.findElement(By.xpath("//input[@id='radiobutton_0']")) ;
+clickRadioBtnForBooking.click();
+
+
+WebElement continueBtn = driver.findElement(By.xpath("//input[@id='continue']")) ;
+continueBtn.click();
+
+WebElement firstName = driver.findElement(By.xpath("//input[@id='first_name']"));
+firstName.sendKeys("cub");
+
+WebElement lastName = driver.findElement(By.xpath("//input[@id='last_name']"));
+lastName.sendKeys("lioness");
+
+WebElement billingAddress= driver.findElement(By.xpath("//textarea[@id='address']"));
+billingAddress.sendKeys("****************************************************************");
+
+WebElement creditcardNumber= driver.findElement(By.xpath("//input[@id='cc_num']"));
+creditcardNumber.sendKeys("1234567891011121314");
+
+
+WebElement creditcardType= driver.findElement(By.xpath("//select[@id='cc_type']"));
+Select select4 = new Select(creditcardType);
+select4.selectByVisibleText("American Express");
+
+
+WebElement exp_month= driver.findElement(By.xpath("//select[@id='cc_exp_month']"));
+Select cc_exp_mon = new Select(exp_month);
+cc_exp_mon.selectByIndex(1);
+
+
+
+WebElement exp_year= driver.findElement(By.xpath("//select[@id='cc_exp_year']"));
+Select cc_exp_year = new Select(exp_year);
+cc_exp_year.selectByValue("2026");
+
+WebElement cvvNo= driver.findElement(By.xpath("//input[@id='cc_cvv']"));
+cvvNo.sendKeys("841");
+
+
+WebElement bookBtn= driver.findElement(By.xpath("//input[@id='book_now']"));
+bookBtn.click();
+
+
+WebElement myItinerary= driver.findElement(By.xpath("//input[@value='My Itinerary']"));
+myItinerary.click();
+
+WebElement cancel1order= driver.findElement(By.xpath("//input[@value='1292833']"));
+cancel1order.click();
+
+WebElement cancelBtn= driver.findElement(By.xpath("//input[@name='cancelall']"));
+cancelBtn.click();
+
+
+	}
+
