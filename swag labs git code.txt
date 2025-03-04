@@ -1,0 +1,81 @@
+
+package com.ecommerceweb;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+
+public class Flowverify {
+
+		
+public static WebDriver dr;
+
+
+public static void main(String[] args) {		
+			// TODO Auto-generated method stub
+	WebDriverManager.chromedriver().setup();
+	dr = new ChromeDriver();
+	dr.get("https://www.saucedemo.com/");//enter url
+	dr.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	dr.findElement(By.id("user-name")).sendKeys("standard_user");//enter username
+	dr.findElement(By.id("password")).sendKeys("secret_sauce");// enter password
+	dr.findElement(By.id("login-button")).click();//click on login button
+	String expectedTitle = "Swag Labs"; //verify title match
+	String actualTitle = dr.getTitle();
+	
+	 if (actualTitle.equals(expectedTitle)) 
+	 {
+   		 
+   		 System.out.println("Title is matched");
+   		 
+   	 }
+	 else 
+	 {
+   		System.out.println("Title is not matched");
+   		
+	}
+ //Thread.sleep(2000);
+WebElement lastProductTitle = dr.findElement(By.xpath("//a[@id=\"item_3_title_link\"]"));//last producttitle
+lastProductTitle.getText();
+System.out.println(lastProductTitle.getText());
+dr.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();//click on the add to cart button
+dr.findElement(By.id("shopping_cart_container")).click();//go to add to cart button
+WebElement cartProductTitle = dr.findElement(By.xpath("//a[@id=\"item_3_title_link\"]"));//verify the cart product title
+cartProductTitle.getText();
+System.out.println(cartProductTitle.getText());
+
+if(cartProductTitle.isDisplayed()) {   //Verify the last product and cart product displayed or not
+	System.out.println("Product is displayed in your cart");
+}
+else {
+	System.out.println("Product is not displayed in your cart");
+}
+
+if (cartProductTitle.equals(lastProductTitle)) { 
+	//verify the lastproduct title matches with the cartproducttitle
+	System.out.println("Product title matched");
+}
+else {
+	System.out.println("product title does not match");
+}
+dr.findElement(By.id("checkout")).click();// click on the checkout button
+
+
+dr.findElement(By.id("first-name")).sendKeys("divya");
+//enter the firstname
+dr.findElement(By.id("last-name")).sendKeys("v");
+//enter the lastname
+
+dr.findElement(By.id("postal-code")).sendKeys("603202");
+//zip code
+
+dr.findElement(By.id("continue")).click();
+//click on the continue button
+
+dr.findElement(By.id("finish")).click();
+
+//click on the finish button
